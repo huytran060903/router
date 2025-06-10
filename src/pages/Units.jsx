@@ -1,8 +1,6 @@
-
-import { UserContext } from "../main";
+import React from "react";
 
 const Units = () => {
-  
   return <div>Units Page</div>;
 };
 

@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react";
+import React,{ useContext, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { UserContext } from "../main";
+import { UserContext } from "../context/UserContext";
+
 
 const ProtectedFromManager = () => {
   const user = useContext(UserContext);

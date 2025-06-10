@@ -1,7 +1,7 @@
-import { createContext, StrictMode } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-
+import React from "react";
 import {
   createBrowserRouter,
   Navigate,
@@ -22,8 +22,7 @@ import PDFTemplates from "./pages/PDFTemplates.jsx";
 import EmailTemplates from "./pages/EmailTemplates.jsx";
 import ProtectedUser from "./components/ProtectedFromUser.jsx";
 import ProtectedFromManager from "./components/ProtectedFromManager.jsx";
-
-export const UserContext = createContext(null);
+import UserContextProvider from "./context/UserContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -100,8 +99,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <UserContext.Provider value={{ id: 1, name: "Huy", role: "admin" }}>
+    <UserContextProvider>
       <RouterProvider router={router} />
-    </UserContext.Provider>
+    </UserContextProvider>
   </StrictMode>
 );
