@@ -1,6 +1,13 @@
 # router
 
-[DEMO VIDEO](https://drive.google.com/file/d/1jb4G5cMmHDgBdvWNm_KJuEYxppxVcBvl/view?usp=sharing)
+[FIRST DEMO VIDEO](https://drive.google.com/file/d/1jb4G5cMmHDgBdvWNm_KJuEYxppxVcBvl/view?usp=sharing)
+
+- Need to hide the menu items in the left side which the user does not have permission to access
+- Need to handle the unauthorized user to access the page (need to redirect to login page)
+- import ProtectedUser from "./components/ProtectedFromUser.jsx"; need to name as ProtectedFromUser for more consistent
+- Need to way to switch the user's role to test instead of modifying the code
+
+[DEMO BASE ON FEEDBACK](https://drive.google.com/file/d/1qqeXRhXptH9_M2RPcfErN1FHmQvPn7OK/view?usp=sharing)
 
 **How to run this exercise ?**
 

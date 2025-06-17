@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import EviziLogo from "../assets/images/evizi_logo.jpg";
 import { BiLogoUnity } from "react-icons/bi";
 import { FcInspection } from "react-icons/fc";
@@ -9,8 +9,7 @@ import { HiDocumentReport } from "react-icons/hi";
 import { IoIosNotifications } from "react-icons/io";
 import { FaRegBuilding, FaUsers, FaRegFilePdf } from "react-icons/fa";
 import { FaMapLocation, FaLocationDot } from "react-icons/fa6";
-import React, { useContext } from "react";
-
+import React, { useContext, useEffect } from "react";
 
 import { UserContext } from "../context/UserContext";
 const linksNavigation = [
@@ -77,7 +76,13 @@ const linksNavigation = [
 ];
 
 const HomeLayout = () => {
-  const user = useContext(UserContext);
+  const { user, setUser, isLogin } = useContext(UserContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLogin) {
+      navigate("/login", { replace: true });
+    }
+  }, [user, navigate, isLogin]);
   return (
     <div className="flex overflow-y-auto">
       <div
@@ -96,8 +101,16 @@ const HomeLayout = () => {
         ))}
       </div>
       <div className="absolute left-48 right-0 p-8 ">
-        <div className="flex  justify-end w-full border-b-[1px] text-lg font-semibold">
-          UserRole: {user.role}
+        <div className="flex items-center gap-2  justify-end w-full border-b-[1px] text-lg font-semibold">
+          UserRole: {user?.role}
+          <button
+            className="px-1 py-2 rounded-lg bg-blue-500 text-white"
+            onClick={() => {
+              setUser(null);
+            }}
+          >
+            Logout
+          </button>
         </div>
         <Outlet />
       </div>

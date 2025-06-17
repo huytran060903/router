@@ -20,9 +20,12 @@ import Locations from "./pages/Locations.jsx";
 import User from "./pages/User.jsx";
 import PDFTemplates from "./pages/PDFTemplates.jsx";
 import EmailTemplates from "./pages/EmailTemplates.jsx";
-import ProtectedUser from "./components/ProtectedFromUser.jsx";
+import ProtectedFromUser from "./components/ProtectedFromUser.jsx";
 import ProtectedFromManager from "./components/ProtectedFromManager.jsx";
 import UserContextProvider from "./context/UserContext.jsx";
+import TestParams, { clientLoader } from "./pages/TestParams.jsx";
+import LoginLayout from "./components/LoginLayout.jsx";
+import SimulateLogin from "./pages/SimulateLogin.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +33,7 @@ const router = createBrowserRouter([
 
     children: [
       {
-        element: <ProtectedUser />,
+        element: <ProtectedFromUser />,
         children: [
           {
             element: <ProtectedFromManager />,
@@ -69,6 +72,11 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: "test/:id",
+        element: <TestParams />,
+        loader: clientLoader,
+      },
+      {
         path: "units",
         element: <Units />,
       },
@@ -95,12 +103,20 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    element: <LoginLayout />,
+
+    children: [
+      {
+        element: <SimulateLogin />,
+        path: "/login",
+      },
+    ],
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <UserContextProvider>
-      <RouterProvider router={router} />
-    </UserContextProvider>
-  </StrictMode>
+  <UserContextProvider>
+    <RouterProvider router={router} />
+  </UserContextProvider>
 );
